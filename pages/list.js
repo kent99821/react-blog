@@ -2,12 +2,12 @@ import React from 'react'
 import {Row, Col} from 'antd'
 import  Head  from "next/head";
 import Header from "../components/Header";
-export default function Home() {
+export default function list() {
   return (
     
   <div>
     <Head>
-      <title>Home</title>
+      <title>list</title>
     </Head>
     <Header/>
     <Row className="comm-main" type="flex" justify="center">
