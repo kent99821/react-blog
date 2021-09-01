@@ -3,6 +3,7 @@ import { Row, Col, List, Card } from 'antd'
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
+import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
 const Home = () => {
   const [myList, setMyList] = useState(
@@ -51,6 +52,7 @@ const Home = () => {
           <Author/>
         </Col>
       </Row>
+      <Footer/>
     </div>
   )
 
