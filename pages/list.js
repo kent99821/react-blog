@@ -1,8 +1,8 @@
 import React from 'react'
 import {Row, Col} from 'antd'
 import  Head  from "next/head";
-import Header from "../components/Header";
-export default function list() {
+import Header from "../components/Header/Header";
+const  list = () => {
   return (
     
   <div>
@@ -22,3 +22,4 @@ export default function list() {
     )
     
 }
+export default list

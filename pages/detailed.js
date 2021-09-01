@@ -1,8 +1,8 @@
 import React from 'react'
 import {Row, Col} from 'antd'
 import  Head  from "next/head";
-import Header from "../components/Header";
-export default function detailed() {
+import Header from "../components/Header/Header";
+const detailed = () => {
   return (
     
   <div>
