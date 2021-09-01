@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col, Menu, Icon } from 'antd';
-import { GithubOutlined, HomeOutlined, CalendarOutlined } from "@ant-design/icons";
+import { Row, Col, Menu } from 'antd';
+import { GithubOutlined, HomeOutlined, SmileOutlined } from "@ant-design/icons";
 const Header = () => (
     <div className="header">
         <Row type="flex" justify="center">
@@ -15,7 +15,8 @@ const Header = () => (
                     首页
                 </Menu.Item>
                 <Menu.Item key="daily">
-                <CalendarOutlined className="icon"/>
+                
+                <SmileOutlined className="icon"/>
                     日常
                 </Menu.Item>
                 <Menu.Item key="github">
