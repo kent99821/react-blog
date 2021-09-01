@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Col, List, Card } from 'antd'
+import { Row, Col, List, Affix } from 'antd'
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
@@ -49,7 +49,9 @@ const Home = () => {
           />
         </Col>
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} xxl={3}>
+        <Affix offsetTop={5}>
           <Author/>
+        </Affix>
         </Col>
       </Row>
       <Footer/>
