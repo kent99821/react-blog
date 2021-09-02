@@ -5,45 +5,29 @@ import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
-import ReactMarkdown from 'react-markdown'
-import MarkNav from 'markdown-navbar'
+import marked from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
+import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-const detailed = ({article}) => {
-  
-  let markdown = '\n' + '# P01:课程介绍和环境搭建 \n' +
-    '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
-    '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
-    '**这是加粗的文字**\n\n' +
-    '*这是倾斜的文字*`\n\n' +
-    '***这是斜体加粗的文字***\n\n' +
-    '~~这是加删除线的文字~~ \n\n' +
-    '\`console.log(111)\` \n\n' +
-    '# p02:来个Hello World 初始Vue3.0\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n' +
-    '***\n\n\n' +
-    '# p03:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p04:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '#5 p05:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p06:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p07:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '``` var a=11; ```'
+marked.setOptions({
+ 
+  renderer: new marked.Renderer(),
+  gfm: true,
+  pedantic: false,
+  sanitize: false,
+  tables: true,
+  breaks: true,
+  smartLists: true,
+  smartypants: true,
+  highlight: function (code) {
+          return hljs.highlightAuto(code).value;
+  }
+ 
+}); 
+
+const detailed = ({ article }) => {
+  let html = marked(article.article_content);
   return (
 
     <div>
@@ -70,8 +54,8 @@ const detailed = ({article}) => {
             <span><ContainerOutlined />&nbsp;{article.typeName}&nbsp;</span>
             <span><FireOutlined />&nbsp;{article.view_count}人&nbsp;</span>
           </div>
-          <div className="detailed-content">
-            <ReactMarkdown children={markdown} escapeHtml={false} />
+          <div className="detailed-content" dangerouslySetInnerHTML={{ __html: html }}>
+
           </div>
         </Col>
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} xxl={3}>
@@ -79,7 +63,7 @@ const detailed = ({article}) => {
           <Affix offsetTop={5}>
             <div className="detailed-nav comm-box">
               <div class='nav-title'>文章目录</div>
-              <MarkNav className="article-menu" source={markdown} ordered={false} />
+              <MarkNav className="article-menu" source={html} ordered={false} />
             </div>
           </Affix>
         </Col>
@@ -89,13 +73,13 @@ const detailed = ({article}) => {
   )
 }
 
-export async function getServerSideProps (context){
-  
-  const id =context.query.id;
+export async function getServerSideProps(context) {
+
+  const id = context.query.id;
   const res = await fetch(`http://127.0.0.1:7001/default/detailed?id=${id}`)
   const temp = await res.json();
   const article = temp.data[0]
-  
+
   return {
     props: {
       article

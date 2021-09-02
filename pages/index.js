@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Row, Col, List, Affix } from 'antd'
+import React, { useState } from 'react';
+import { Row, Col, List, Affix } from 'antd';
+import Link from 'next/link';
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
 import axios from 'axios';
-const Home = ({list}) => {
+const Home = ({ list }) => {
   // const [myList, setMyList] = useState(list.data);
-  console.log(list);
   return (
 
     <div>
@@ -24,7 +24,11 @@ const Home = ({list}) => {
             dataSource={list.data}
             renderItem={item => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
+                <div className="list-title">
+                  <Link href={{ pathname: '/detailed', query: {id: item.id } }}>
+                    <a>{item.title}</a>
+                  </Link>
+                </div>
                 <div className="list-icon">
                   <span><CalendarOutlined />&nbsp;{item.addTime}&nbsp;</span>
                   <span><ContainerOutlined />&nbsp;{item.typeName}&nbsp;</span>
@@ -44,28 +48,25 @@ const Home = ({list}) => {
           />
         </Col>
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4} xxl={3}>
-        <Affix offsetTop={5}>
-          <Author/>
-        </Affix>
+          <Affix offsetTop={5}>
+            <Author />
+          </Affix>
         </Col>
       </Row>
-      <Footer/>
+      <Footer />
     </div>
   )
 
 }
-export async function getStaticProps (){
-  const res = await fetch('http://127.0.0.1:7001/default/ArticleList')
+export async function getStaticProps() {
+  const res = await fetch('http://127.0.0.1:7001/default/articlelist')
   const list = await res.json()
-  // 通过返回 { props: { posts } } 对象，Blog 组件
-  // 在构建时将接收到 `posts` 参数
+  // 通过返回 { props: { list } } 对象，Home 组件
+  // 在构建时将接收到 `list` 参数
   return {
     props: {
       list,
     },
   }
-
-  
-
 }
 export default Home
