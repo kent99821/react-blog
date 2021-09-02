@@ -8,7 +8,8 @@ import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/i
 import ReactMarkdown from 'react-markdown'
 import MarkNav from 'markdown-navbar'
 import 'markdown-navbar/dist/navbar.css';
-const detailed = () => {
+const detailed = ({article}) => {
+  
   let markdown = '\n' + '# P01:课程介绍和环境搭建 \n' +
     '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
     '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
@@ -57,17 +58,17 @@ const detailed = () => {
               <Breadcrumb>
                 <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
                 <Breadcrumb.Item>文章列表</Breadcrumb.Item>
-                <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+                <Breadcrumb.Item>{article.title}</Breadcrumb.Item>
               </Breadcrumb>
             </div>
           </div>
           <div className="detailed-title">
-            React - Blog开发
+            {article.title}
           </div>
           <div className="list-icon center">
-            <span><CalendarOutlined />&nbsp;2021-09-01&nbsp;</span>
-            <span><ContainerOutlined />&nbsp;React学习&nbsp;</span>
-            <span><FireOutlined />&nbsp;5846人&nbsp;</span>
+            <span><CalendarOutlined />&nbsp;{article.addTime}&nbsp;</span>
+            <span><ContainerOutlined />&nbsp;{article.typeName}&nbsp;</span>
+            <span><FireOutlined />&nbsp;{article.view_count}人&nbsp;</span>
           </div>
           <div className="detailed-content">
             <ReactMarkdown children={markdown} escapeHtml={false} />
@@ -86,6 +87,20 @@ const detailed = () => {
       <Footer />
     </div>
   )
-
 }
+
+export async function getServerSideProps (context){
+  
+  const id =context.query.id;
+  const res = await fetch(`http://127.0.0.1:7001/default/detailed?id=${id}`)
+  const temp = await res.json();
+  const article = temp.data[0]
+  
+  return {
+    props: {
+      article
+    },
+  }
+}
+
 export default detailed;
