@@ -7,8 +7,23 @@ import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
 import servicePath from '../config/apiUrl';
-
+import marked from 'marked';
+import hljs from 'highlight.js';
 const Home = ({ list }) => {
+  const renderer = new marked.Renderer();
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: true,
+    smartLists: true,
+    smartypants: true,
+    highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+    }
+    });
   return (
 
     <div>
@@ -34,7 +49,9 @@ const Home = ({ list }) => {
                   <span><ContainerOutlined />{item.typeName}</span>
                   <span><FireOutlined />{item.view_count}人</span>
                 </div>
-                <div className="list-context">{item.introduce}</div>
+                <div className="list-context"
+                   dangerouslySetInnerHTML={{__html:marked(item.introduce)}}
+                ></div>
                 {/* <Card title={item.title} bordered >
                 <div className="list-icon">
                   <span><CalendarOutlined />&nbsp;2021-09-01&nbsp;</span>

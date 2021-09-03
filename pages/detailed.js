@@ -8,8 +8,6 @@ import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/i
 import marked from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai-sublime.css';
-import MarkNav from 'markdown-navbar';
-import 'markdown-navbar/dist/navbar.css';
 import Tocify from '../components/markdownnav/tocify.tsx';
 import servicePath from '../config/apiUrl';
 

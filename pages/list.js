@@ -7,8 +7,23 @@ import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
 import servicePath from '../config/apiUrl';
 import Link from 'next/link';
+import marked from 'marked';
+import hljs from 'highlight.js';
 const articleList = ({list}) => {
-  
+  const renderer = new marked.Renderer();
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: true,
+    smartLists: true,
+    smartypants: true,
+    highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+    }
+    });
   const [myList, setMyList] = useState(list.data)
   useEffect(()=>{
     setMyList(list.data)
@@ -29,7 +44,7 @@ const articleList = ({list}) => {
             </Breadcrumb>
           </div>
           <List
-            header={<div>最新日志</div>}
+            header={<div>最新文章</div>}
             itemLayout="vertical"
             dataSource={myList}
             renderItem={item => (
@@ -44,7 +59,9 @@ const articleList = ({list}) => {
                   <span><ContainerOutlined />{item.typeName}</span>
                   <span><FireOutlined />{item.view_content}人</span>
                 </div>
-                <div className="list-context">{item.introduce}</div>
+                <div className="list-context"
+            dangerouslySetInnerHTML={{__html:marked(item.introduce)}}
+                ></div>
               </List.Item>
             )}
           />
