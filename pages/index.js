@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, List, Affix, Dropdown } from 'antd';
+import { Row, Col, List, Affix } from 'antd';
 import Link from 'next/link';
 import Head from "next/head";
 import Header from "../components/Header/Header";
@@ -70,6 +70,7 @@ const Home = ({ list }) => {
           </Affix>
         </Col>
       </Row>
+      
       <Footer />
     </div>
   )

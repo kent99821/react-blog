@@ -6,6 +6,7 @@ import axios from 'axios';
 import servicePath from '../../config/apiUrl';
 import Link from 'next/link';
 const Header = () => {
+  
     const [navArray, setNavArray] = useState([]);
     useEffect(() => {
 
