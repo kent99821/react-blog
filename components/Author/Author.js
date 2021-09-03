@@ -1,5 +1,5 @@
 import {Avatar, Divider} from 'antd';
-import { WechatOutlined, QqOutlined  } from '@ant-design/icons';
+import { WechatOutlined, GithubOutlined, QqOutlined  } from '@ant-design/icons';
 const Author = () =>{
     return (
         <div className="author-div comm-box">
@@ -14,7 +14,7 @@ const Author = () =>{
             <Divider>社交账号</Divider>
             <Avatar size={30} icon={<WechatOutlined />} className="account"></Avatar>
             <Avatar size={30} icon={<QqOutlined />} className="account"></Avatar>
-            <Avatar size={30} icon={<QqOutlined />} className="account"></Avatar>
+            <Avatar size={30} icon={<GithubOutlined />} className="account"></Avatar>
             </div>
 
         </div>

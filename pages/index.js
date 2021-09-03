@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Row, Col, List, Affix } from 'antd';
+import React from 'react';
+import { Row, Col, List, Affix, Dropdown } from 'antd';
 import Link from 'next/link';
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
-import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
+import { CalendarOutlined, ContainerOutlined, FireOutlined, DownOutlined } from "@ant-design/icons";
 import servicePath from '../config/apiUrl';
+
 const Home = ({ list }) => {
-  // const [myList, setMyList] = useState(list.data);
   return (
 
     <div>
@@ -30,9 +30,9 @@ const Home = ({ list }) => {
                   </Link>
                 </div>
                 <div className="list-icon">
-                  <span><CalendarOutlined />&nbsp;{item.addTime}&nbsp;</span>
-                  <span><ContainerOutlined />&nbsp;{item.typeName}&nbsp;</span>
-                  <span><FireOutlined />&nbsp;{item.view_count}人&nbsp;</span>
+                  <span><CalendarOutlined />{item.addTime}</span>
+                  <span><ContainerOutlined />{item.typeName}</span>
+                  <span><FireOutlined />{item.view_count}人</span>
                 </div>
                 <div className="list-context">{item.introduce}</div>
                 {/* <Card title={item.title} bordered >
