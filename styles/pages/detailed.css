@@ -24,27 +24,26 @@ pre{
      font-family: Menlo, monospace;
      border-radius: .3rem;
 }
-pre{
-    background-color: #283646 !important;
-}
-pre >code{
-    border:0px !important;
-    background-color: #283646 !important;
-    color:#FFF;
-
-}
+/* 代码块 */
 code {
-    display: inline-block ;
-    background-color:#f3f3f3;
-    border:1px solid #fdb9cc;
-    border-radius:3px;
-    font-size: 12px;
-    padding-left: 5px;
-    padding-right: 5px;
-    color:#4f4f4f;
-    margin: 0px 3px;
-
-}
+    margin: 0 5px;
+    padding: 2px 5px;
+    background-color: #ffe0e0;
+    color: #ff502c;
+    border-radius: 5px;
+  }
+  
+  /* 代码块 */
+  pre > code {
+      display: block;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+      border-radius: 5px;
+      overflow-y: auto;
+      color: #FFF;
+      font-family: Menlo, monospace;
+  }
 
 .title-anchor{
     color:#888 !important;
@@ -85,4 +84,27 @@ iframe{
 }
 .ant-anchor-wrapper{
     padding: 5px !important;
+}
+/* p标签的颜色 */
+p { 
+	color: #666;
+}
+
+ul {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+/* li 的项目符号在内侧，显示项目符号 */
+ul > li {
+   list-style: disc inside;
+}
+
+ol {
+  font-size: 1rem;
+}
+
+ol > li {
+   list-style: none;
 }

@@ -10,23 +10,31 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai-sublime.css';
 import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-marked.setOptions({
- 
-  renderer: new marked.Renderer(),
-  gfm: true,
-  pedantic: false,
-  sanitize: false,
-  tables: true,
-  breaks: true,
-  smartLists: true,
-  smartypants: true,
-  highlight: function (code) {
-          return hljs.highlightAuto(code).value;
-  }
- 
-}); 
+import Tocify from '../components/markdownnav/tocify.tsx';
+
 
 const detailed = ({ article }) => {
+  const tocify = new Tocify();
+  const renderer = new marked.Renderer();
+  renderer.heading  = function (text, level, raw){
+    const anchor = tocify.add(text, level);
+    return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`
+  }
+
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: true,
+    smartLists: true,
+    smartypants: true,
+    highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+    }
+   
+  }); 
   let html = marked(article.article_content);
   return (
 
@@ -63,7 +71,7 @@ const detailed = ({ article }) => {
           <Affix offsetTop={5}>
             <div className="detailed-nav comm-box">
               <div class='nav-title'>文章目录</div>
-              <MarkNav className="article-menu" source={html} ordered={false} />
+              {tocify && tocify.render()}
             </div>
           </Affix>
         </Col>
