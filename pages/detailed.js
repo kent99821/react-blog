@@ -11,6 +11,7 @@ import 'highlight.js/styles/monokai-sublime.css';
 import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import Tocify from '../components/markdownnav/tocify.tsx';
+import servicePath from '../config/apiUrl';
 
 
 const detailed = ({ article }) => {
@@ -84,7 +85,7 @@ const detailed = ({ article }) => {
 export async function getServerSideProps(context) {
 
   const id = context.query.id;
-  const res = await fetch(`http://127.0.0.1:7001/default/detailed?id=${id}`)
+  const res = await fetch(`${servicePath.detailed}?id=${id}`)
   const temp = await res.json();
   const article = temp.data[0]
 

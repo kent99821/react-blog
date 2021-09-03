@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
 import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
-import axios from 'axios';
+import servicePath from '../config/apiUrl';
 const Home = ({ list }) => {
   // const [myList, setMyList] = useState(list.data);
   return (
@@ -59,7 +59,7 @@ const Home = ({ list }) => {
 
 }
 export async function getStaticProps() {
-  const res = await fetch('http://127.0.0.1:7001/default/articlelist')
+  const res = await fetch(servicePath.articlelist)
   const list = await res.json()
   // 通过返回 { props: { list } } 对象，Home 组件
   // 在构建时将接收到 `list` 参数
