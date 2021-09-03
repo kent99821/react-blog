@@ -5,7 +5,7 @@ import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
 import Footer from '../components/Footer/Footer';
-import { CalendarOutlined, ContainerOutlined, FireOutlined, DownOutlined } from "@ant-design/icons";
+import { CalendarOutlined, ContainerOutlined, FireOutlined } from "@ant-design/icons";
 import servicePath from '../config/apiUrl';
 
 const Home = ({ list }) => {
@@ -59,7 +59,7 @@ const Home = ({ list }) => {
 
 }
 export async function getStaticProps() {
-  const res = await fetch(servicePath.articlelist)
+  const res = await fetch(servicePath.articleList)
   const list = await res.json()
   // 通过返回 { props: { list } } 对象，Home 组件
   // 在构建时将接收到 `list` 参数
