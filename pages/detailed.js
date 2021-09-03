@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Breadcrumb, Affix } from 'antd'
+import { Row, Col, Breadcrumb, Affix, BackTop  } from 'antd'
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
@@ -38,6 +38,7 @@ const detailed = ({ article }) => {
   return (
 
     <div>
+      <BackTop />
       <Head>
         <title>Detailed</title>
       </Head>

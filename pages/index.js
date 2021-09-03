@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, List, Affix } from 'antd';
+import { Row, Col, List, Affix,BackTop  } from 'antd';
 import Link from 'next/link';
 import Head from "next/head";
 import Header from "../components/Header/Header";
@@ -27,6 +27,7 @@ const Home = ({ list }) => {
   return (
 
     <div>
+      <BackTop />
       <Head>
         <title>Home</title>
       </Head>

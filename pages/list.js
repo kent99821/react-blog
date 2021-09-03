@@ -1,5 +1,5 @@
 import React, { useState,  useEffect } from 'react'
-import { Row, Col, List, Breadcrumb, Affix } from 'antd'
+import { Row, Col, List, Breadcrumb, Affix, BackTop  } from 'antd'
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Author from '../components/Author/Author';
@@ -31,6 +31,7 @@ const articleList = ({list}) => {
   return (
 
     <div>
+      <BackTop />
       <Head>
         <title>List</title>
       </Head>
